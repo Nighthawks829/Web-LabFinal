@@ -1,0 +1,121 @@
+section {
+    padding: 10px;
+}
+
+h1 {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 64px;
+    margin-bottom: 50px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-top: 30px;
+}
+
+h6 {
+    text-align: center;
+    /* font-size: 16px; */
+    margin-top: 5px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.challengeTable {
+    width: 100%;
+    margin: 30px auto;
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+
+.challengeTable td,
+th {
+    padding: 8px;
+    border: 1px solid #000;
+}
+
+.challengeTable th {
+    background-color: #4CAF50;
+    color: black;
+}
+
+.challengeTable tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+.challengeTable tr:hover {
+    background-color: #C8B4BA;
+}
+
+.challengeInputField {
+    margin-top: 50px;
+}
+
+.challengeInputField h3,
+p {
+    text-align: center;
+
+}
+
+.challengeFormTable {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 15px auto;
+}
+
+.challengeFormTable td,
+th,
+tr {
+    border: 1px solid #000;
+    padding: 8px;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    resize: none;
+}
+
+input {
+    padding: 2px;
+}
+
+.editChallengeFormTable {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 15px auto;
+}
+
+.editChallengeFormTable td,
+th,
+tr {
+    border: 1px solid #000;
+    padding: 8px;
+}
+
+input[type="file"] {
+    width: 100%;
+}
+
+input[type="file"]::file-selector-button {
+    font-weight: bold;
+    background: none;
+    padding: 7px 20px;
+    color: #eaecf0;
+    background-color: #0165fc;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #2677ef;
+}
+
+input[type="file"]::file-selector-button:active {
+    background-color: #0046ae;
+}

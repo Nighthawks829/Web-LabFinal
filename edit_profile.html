@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/edit_profile.css">
+    <link rel="stylesheet" href="style/grid.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header></header>
+
+    <nav class="topnav" id="myTopnav">
+        <a href="profile.html" class="active">Profile</a>
+        <a href="my_kpi.html">KPI Indicator</a>
+        <a href="my_activities.html">List of Activities</a>
+        <a href="my_challenge.html">Challenge and Future Plan</a>
+        <a href="login.html" class="logout">Logout</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i></a>
+    </nav>
+
+    <!-- <section>
+        <div class="row">
+            <div class="col-left">
+                <img class="image" src="img/profile.jpg">
+            </div>
+            <div class="col-right">
+                <div class="editProfileField">
+                    <h3>Edit Profile</h3>
+
+                    <form method="POST" action="" enctype="multipart/form-data" class="editProfileForm">
+                        <table class="editProfileFormTable">
+                            <tr>
+                                <td>Name</td>
+                                <td width="1px">:</td>
+                                <td>
+                                    <input type="text" name="name" size="30" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Matrix No</td>
+                                <td width="1px">:</td>
+                                <td>
+                                    <input type="text" name="matrixNo" size="30" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td width="1px">:</td>
+                                <td>
+                                    <input type="email" name="email" size="30" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Program</td>
+                                <td width="1px">:</td>
+                                <td>
+                                    <input type="text" name="program" size="30" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>My Study Motto</td>
+                                <td>:</td>
+                                <td>
+                                    <textarea rows="4" name="remark" cols="20"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Upload photo</td>
+                                <td>:</td>
+                                <td>
+                                    Max size: 488.28KB<br>
+                                    <input type="file" name="fileToUpload" id="fileToUpload" accept=".jpg, .jpeg, .png">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3" align="right">
+                                    <input type="submit" value="Submit" name="B1">
+                                    <input type="reset" value="Reset" name="B2">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section> -->
+
+    <section>
+        <div class="container-fluid">
+            <form action="" class="edit-profile-form">
+                <div class="row">
+                    <div class="col-md-5 text-center">
+                        <img src="img/profile.jpg" alt="">
+                        <div>
+                            <small>Max size: 488.28KB</small><br>
+                            <input type="file" name="fileToUpload" id="fileToUpload" accept=".jpg, .jpeg, .png">
+                        </div>
+                        <!-- <label class="submit">
+                            <input type="file" />
+                            Upload Picture
+                        </label> -->
+                    </div>
+                    <div class="col-md-7">
+                        <h1>My Profile</h1>
+                        <table class="edit-profile-table">
+                            <tr>
+                                <td>Name</td>
+                                <td>
+                                    <input type="text" class="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Matrix No.</td>
+                                <td>
+                                    <input type="text" class="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>
+                                    <input type="text" class="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Program</td>
+                                <td>
+                                    <input type="text" class="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mentor Name</td>
+                                <td>
+                                    <input type="text" class="text">
+                                </td>
+                            </tr>
+                        </table>
+
+                        <h3>My Study Motto</h3>
+
+                        <textarea rows="5" name="remark" cols="25"></textarea>
+
+                        <div class="col-12 text-center">
+                            <input class="submit" type="submit" value="Submit" name="B1">
+                            <input class="reset" type="reset" value="Reset" name="B2">
+                        </div>
+            </form>
+
+        </div>
+        </div>
+        </div>
+    </section>
+
+
+    <script src="script/script.js"></script>
+</body>
+
+</html>

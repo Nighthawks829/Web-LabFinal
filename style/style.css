@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    font-family: 'Ubuntu';
+}
+
+section {
+    padding: 10px;
+}
+
+header {
+    background: url(../img/banner.png) center/cover no-repeat;
+    height: 300px;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* topnav */
+.topnav {
+    font-family: 'Ubuntu';
+    overflow: hidden;
+    background-color: #333;
+    width: 100%;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+.topnav .icon {
+    display: none;
+}
+
+
+.text-center {
+    text-align: center !important;
+}
+
+@media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) {
+        display: none;
+    }
+
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .topnav.responsive {
+        position: relative;
+    }
+
+    .topnav.responsive .icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .topnav.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+}
+
+.submit {
+    font-weight: bold;
+    font-size: 16px;
+    background: none;
+    padding: 7px 20px;
+    color: #eaecf0;
+    background-color: #0165fc;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+.submit:hover {
+    background-color: #2677ef;
+}
+
+.submit:active {
+    background-color: #0046ae;
+}
+
+.reset {
+    font-weight: bold;
+    font-size: 16px;
+    background: none;
+    padding: 7px 20px;
+    color: #eaecf0;
+    background-color: #d90429;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+.reset:hover {
+    background-color: #ff002b;
+}
+
+.reset:active {
+    background-color: #7c1224;
+}
+
+.logout {
+    background-color: red;
+}

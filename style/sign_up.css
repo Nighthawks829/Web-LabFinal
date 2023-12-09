@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+    /* margin: 0;
+    padding: 0; */
+}
+
+.signup {
+    padding: 10px;
+    background-image: url(../img/background.jpg);
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.signup-box {
+    position: relative;
+    width: 35%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 3px 60px rgba(0, 0, 0, 1);
+    font-family: 'Ubuntu';
+}
+
+.signup-box h1 {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.signup-box .input-box {
+    margin-bottom: 30px;
+}
+
+.signup-box .input-box label {
+    display: inline-block;
+    font-family: 'Ubuntu';
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.signup-box .input-box input {
+    padding: 7px 10px;
+    border-radius: 5px;
+    border: 1px solid #000;
+}
+
+.signup-box .input-box input:focus {
+    border: 2px solid #000;
+}
+
+.signup-box button {
+    font-family: 'Ubuntu';
+    font-weight: 500;
+    background: none;
+    padding: 7px 20px;
+    color: #eaecf0;
+    background-color: #0165fc;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.signup-box button:hover {
+    background-color: #2677ef;
+}
+
+.signup-box button:active {
+    background-color: #0046ae;
+}
+
+.signup-box a {
+    color: #0165fc;
+    font-weight: 600;
+}
+
+.signup-box a {
+    color: #0165fc;
+    font-weight: 700;
+}
+
+.signup-box a:hover {
+    color: #2677ef;
+}
+
+.signup-box a :active {
+    color: #0046ae;
+    font-weight: 700;
+}
