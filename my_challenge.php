@@ -15,11 +15,11 @@
     <header></header>
 
     <nav class="topnav" id="myTopnav">
-        <a href="profile.html">Profile</a>
-        <a href="my_kpi.html">KPI Indicator</a>
-        <a href="my_activities.html">List of Activities</a>
-        <a href="my_challenge.html" class="active">Challenge and Future Plan</a>
-        <a href="login.html" class="logout">Logout</a>
+        <a href="profile.php">Profile</a>
+        <a href="my_kpi.php">KPI Indicator</a>
+        <a href="my_activities.php">List of Activities</a>
+        <a href="my_challenge.php" class="active">Challenge and Future Plan</a>
+        <a href="login.php" class="logout">Logout</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i></a>
     </nav>
@@ -93,7 +93,7 @@
                         <td>Year*</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="year" size="5" required>
+                            <input type=\"text\" name="year" size="5" required>
                         </td>
                     </tr>
                     <tr>
@@ -159,7 +159,7 @@
                         <td>Commitee</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="edit_challenge.html">Edit</a>
+                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="edit_challenge.php">Edit</a>
                         </td>
                     </tr>
                     <tr>
@@ -213,21 +213,21 @@
                                 <td>Year*</td>
                                 <td>:</td>
                                 <td>
-                                    <input type="text" name="year" size="10" required>
+                                    <input type=\"text\" name="year" size="10" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Challenge</td>
                                 <td>:</td>
                                 <td>
-                                    <input name="name" type="text" required>
+                                    <input name="name" type=\"text\" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Plan</td>
                                 <td>:</td>
                                 <td>
-                                    <input name="name" type="text" required>
+                                    <input name="name" type=\"text\" required>
                                 </td>
                             </tr>
                             <tr>

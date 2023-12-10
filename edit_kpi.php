@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/my_challenge.css">
+    <link rel="stylesheet" href="style/my_kpi.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/grid.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Edit Activities</title>
+    <title>Edit KPI Indicator</title>
 </head>
 
 <body>
@@ -17,21 +17,35 @@
     <header></header>
 
     <nav class="topnav" id="myTopnav">
-        <a href="profile.html">Profile</a>
-        <a href="my_kpi.html">KPI Indicator</a>
-        <a href="my_activities.html">List of Activities</a>
-        <a href="my_challenge.html" class="active">Challenge and Future Plan</a>
-        <a href="login.html" class="logout">Logout</a>
+        <a href="profile.php">Profile</a>
+        <a href="my_kpi.php" class="active">KPI Indicator</a>
+        <a href="my_activities.php">List of Activities</a>
+        <a href="my_challenge.php">Challenge and Future Plan</a>
+        <a href="login.php" class="logout">Logout</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i></a>
     </nav>
 
     <section>
-        <div class="d-flex justify-content-center align-items-center flex-column">
-            <h1>Edit Challenge</h1>
+        <div class="container  d-flex justify-content-center align-items-center flex-column">
+            <h1>Edit KPI Indicator</h1>
             <div class="col-lg-9">
-                <form action="" class="editChallengeForm">
-                    <table class="editChallengeFormTable">
+                <form action="" class="editKpiForm">
+                    <table class="editKpiFormTable">
+                        <tr>
+                            <td>Indicator*</td>
+                            <td width="1px">:</td>
+                            <td>
+                                Indicator
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Level</td>
+                            <td width="1px">:</td>
+                            <td>
+                                Level
+                            </td>
+                        </tr>
                         <tr>
                             <td>Semester*</td>
                             <td width="1px">:</td>
@@ -47,21 +61,14 @@
                             <td>Year*</td>
                             <td>:</td>
                             <td>
-                                <input type="text" name="year" size="10" required>
+                                <input type=\"text\" name="year" size="10" required>
                             </td>
                         </tr>
                         <tr>
-                            <td>Challenge*</td>
+                            <td>KPI*</td>
                             <td>:</td>
                             <td>
-                                <input name="kpi" type="text" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Plan*</td>
-                            <td>:</td>
-                            <td>
-                                <input name="kpi" type="text" required>
+                                <input name="kpi" type=\"text\" size="10" required>
                             </td>
                         </tr>
                         <tr>
@@ -69,14 +76,6 @@
                             <td>:</td>
                             <td>
                                 <textarea rows="5" name="remark" cols="25"></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Photo</td>
-                            <td>:</td>
-                            <td>
-                                <small>Max size: 488.28KB</small>
-                                <input type="file" name="fileToUpload" id="fileToUpload" accept=".jpg, .jpeg, .png">
                             </td>
                         </tr>
                     </table>

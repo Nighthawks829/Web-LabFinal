@@ -15,11 +15,11 @@
     <header></header>
 
     <nav class="topnav" id="myTopnav">
-        <a href="profile.html">Profile</a>
-        <a href="my_kpi.html">KPI Indicator</a>
-        <a href="my_activities.html" class="active">List of Activities</a>
-        <a href="my_challenge.html">Challenge and Future Plan</a>
-        <a href="login.html" class="logout">Logout</a>
+        <a href="profile.php">Profile</a>
+        <a href="my_kpi.php">KPI Indicator</a>
+        <a href="my_activities.php" class="active">List of Activities</a>
+        <a href="my_challenge.php">Challenge and Future Plan</a>
+        <a href="login.php" class="logout">Logout</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i></a>
     </nav>
@@ -43,7 +43,7 @@
                         <td>Persatuan Mahasiwa FKI</td>
                         <td>Commitee</td>
                         <td>&nbsp;</td>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="edit_activities.html">Edit</a>
+                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="edit_activities.php">Edit</a>
                         </td>
                     </tr>
                     <tr>
@@ -94,14 +94,14 @@
                                 <td>Year*</td>
                                 <td>:</td>
                                 <td>
-                                    <input type="text" name="year" size="10" required>
+                                    <input type=\"text\" name="year" size="10" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Name of Activities</td>
                                 <td>:</td>
                                 <td>
-                                    <input name="name" type="text" required>
+                                    <input name="name" type=\"text\" required>
                                 </td>
                             </tr>
                             <tr>
@@ -187,14 +187,14 @@
                         <td>Year*</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="year" size="5" required>
+                            <input type=\"text\" name="year" size="5" required>
                         </td>
                     </tr>
                     <tr>
                         <td>Activities*</td>
                         <td>:</td>
                         <td>
-                            <input name="activities" type="text" size="30" required>
+                            <input name="activities" type=\"text\" size="30" required>
                         </td>
                     </tr>
                     <tr>

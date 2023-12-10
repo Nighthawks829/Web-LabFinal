@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/my_activities.css">
+    <link rel="stylesheet" href="style/my_challenge.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/grid.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -17,21 +17,21 @@
     <header></header>
 
     <nav class="topnav" id="myTopnav">
-        <a href="profile.html">Profile</a>
-        <a href="my_kpi.html">KPI Indicator</a>
-        <a href="my_activities.html" class="active">List of Activities</a>
-        <a href="my_challenge.html">Challenge and Future Plan</a>
-        <a href="login.html" class="logout">Logout</a>
+        <a href="profile.php">Profile</a>
+        <a href="my_kpi.php">KPI Indicator</a>
+        <a href="my_activities.php">List of Activities</a>
+        <a href="my_challenge.php" class="active">Challenge and Future Plan</a>
+        <a href="login.php" class="logout">Logout</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i></a>
     </nav>
 
     <section>
         <div class="d-flex justify-content-center align-items-center flex-column">
-            <h1>Edit Activities</h1>
+            <h1>Edit Challenge</h1>
             <div class="col-lg-9">
-                <form action="" class="editActivitiesForm">
-                    <table class="editActivitiesFormTable">
+                <form action="" class="editChallengeForm">
+                    <table class="editChallengeFormTable">
                         <tr>
                             <td>Semester*</td>
                             <td width="1px">:</td>
@@ -47,14 +47,21 @@
                             <td>Year*</td>
                             <td>:</td>
                             <td>
-                                <input type="text" name="year" size="10" required>
+                                <input type=\"text\" name="year" size="10" required>
                             </td>
                         </tr>
                         <tr>
-                            <td>Name*</td>
+                            <td>Challenge*</td>
                             <td>:</td>
                             <td>
-                                <input name="kpi" type="text" required>
+                                <input name="kpi" type=\"text\" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Plan*</td>
+                            <td>:</td>
+                            <td>
+                                <input name="kpi" type=\"text\" required>
                             </td>
                         </tr>
                         <tr>

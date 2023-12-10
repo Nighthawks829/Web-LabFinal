@@ -137,3 +137,27 @@ header {
 .logout {
     background-color: red;
 }
+
+small{
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+input[type="file"]::file-selector-button {
+    font-weight: bold;
+    background: none;
+    padding: 7px 20px;
+    color: #eaecf0;
+    background-color: #0165fc;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #2677ef;
+}
+
+input[type="file"]::file-selector-button:active {
+    background-color: #0046ae;
+}

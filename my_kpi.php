@@ -18,11 +18,11 @@
     <header></header>
 
     <nav class="topnav" id="myTopnav">
-        <a href="profile.html">Profile</a>
-        <a href="my_kpi.html" class="active">KPI Indicator</a>
-        <a href="my_activities.html">List of Activities</a>
-        <a href="my_challenge.html">Challenge and Future Plan</a>
-        <a href="login.html" class="logout">Logout</a>
+        <a href="profile.php">Profile</a>
+        <a href="my_kpi.php" class="active">KPI Indicator</a>
+        <a href="my_activities.php">List of Activities</a>
+        <a href="my_challenge.php">Challenge and Future Plan</a>
+        <a href="login.php" class="logout">Logout</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i></a>
     </nav>
@@ -113,14 +113,14 @@
                         <td>Year*</td>
                         <td>:</td>
                         <td>
-                            <input type="text" name="year" size="5" required>
+                            <input type=\"text\" name="year" size="5" required>
                         </td>
                     </tr>
                     <tr>
                         <td>KPI*</td>
                         <td>:</td>
                         <td>
-                            <input name="kpi" type="text" size="5" required>
+                            <input name="kpi" type=\"text\" size="5" required>
                         </td>
                     </tr>
                     <tr>
@@ -164,7 +164,7 @@
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="edit_kpi.html">Edit</a></td>
+                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="edit_kpi.php">Edit</a></td>
                     </tr>
                     <tr>
                         <td align="center" rowspan="5">2</td>
@@ -306,14 +306,14 @@
                                 <td>Year*</td>
                                 <td>:</td>
                                 <td>
-                                    <input type="text" name="year" size="10" required>
+                                    <input type=\"text\" name="year" size="10" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td>KPI*</td>
                                 <td>:</td>
                                 <td>
-                                    <input name="kpi" type="text" size="10" required>
+                                    <input name="kpi" type=\"text\" size="10" required>
                                 </td>
                             </tr>
                             <tr>

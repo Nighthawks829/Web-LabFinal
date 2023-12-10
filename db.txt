@@ -1,0 +1,55 @@
+CREATE Table Mentor(
+    mentorID VARCHAR(10) NOT NULL PRIMARY KEY,
+    name VARCHAR(30),
+    email VARCHAR(30),
+    program VARCHAR(7),
+);
+
+CREATE Table Student(
+    matricNo VARCHAR(10) NOT NULL PRIMARY KEY,
+    mentorID VARCHAR(10),
+    name VARCHAR(30),
+    email VARCHAR(30),
+    program VARCHAR(7),
+    motto VARCHAR(255),
+    photo VARCHAR(255),
+    password VARCHAR(100),
+    FOREIGN KEY (mentorID) REFERENCES Mentor(mentorID)
+);
+
+CREATE Table Kpi(
+    kpiID VARCHAR(10) NOT NULL PRIMARY KEY,
+    matricNo VARCHAR(10),
+    indicator VARCHAR(30),
+    level VARCHAR(30),
+    kpi DECIMAL(10, 2),
+    semester INT,
+    year VARCHAR(10),
+    remarks VARCHAR(255),
+    FOREIGN KEY (matricNo) REFERENCES Student(matricNo)
+);
+
+CREATE Table Activities(
+    activityID VARCHAR(10) NOT NULL PRIMARY KEY,
+    matricNo VARCHAR(10),
+    activityName VARCHAR(100),
+    semester INT,
+    year VARCHAR(10),
+    remarks VARCHAR(255),
+    photo VARCHAR(50),
+    FOREIGN KEY (matricNo) REFERENCES Student(matricNo)
+);
+
+
+CREATE Table Challenge(
+    challengeID VARCHAR(10) NOT NULL PRIMARY KEY,
+    matricNo VARCHAR(10),
+    challenge VARCHAR(100),
+    plans VARCHAR(100),
+    semester INT,
+    year VARCHAR(10),
+    remarks VARCHAR(255),
+    photo VARCHAR(50),
+);
+
+
