@@ -38,11 +38,9 @@ include("include/config.php");
         <div class="container-fluid">
             <div class="row">
                 <?php
-                session_start();
                 error_reporting(E_ALL);
                 ini_set('display_errors', 1);
 
-                echo $_SESSION['UID'];
                 if (isset($_SESSION['UID']) && !empty($_SESSION['UID'])) {
                     $sql = "SELECT * FROM Student WHERE matricNo='" . $_SESSION["UID"] . "' LIMIT 1";
                     $result = mysqli_query($conn, $sql);
