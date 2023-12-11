@@ -51,7 +51,7 @@ include("include/config.php");
                         echo "<div class=\"col-md-5 text-center\">";
 
                         if ($row['photo'] != "") {
-                            echo "<img src=\"img/" . $row['photo'] . "\" alt=\"profile picture\">";
+                            echo "<img src=\"uploads/" . $row['photo'] . "\" alt=\"profile picture\">";
                         } else {
                             echo "<h3>Please Upload Photo</h3>";
                         }

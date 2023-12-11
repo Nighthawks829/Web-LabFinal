@@ -15,7 +15,7 @@ $motto = "";
 $photo = "";
 
 //for upload
-$target_dir = "uploads/";
+$target_dir = "/opt/lampp/htdocs/Web-LabFinal/uploads/";
 $target_file = "";
 $uploadOk = 0;
 $imageFileType = "";
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Check if file already exists
         if (file_exists($target_file)) {
-            $message = "Sorry, image file $uploadFileName already exists";
+            $message = "Sorry, image file $uploadfileName already exists";
             $uploadOk = 0;
             include("./error_update_profile.php");
         }
