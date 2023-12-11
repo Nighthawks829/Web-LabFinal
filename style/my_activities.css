@@ -84,13 +84,13 @@ input {
     padding: 2px;
 }
 
-.editActivitiesFormTable {
+.editActivityFormTable {
     width: 100%;
     border-collapse: collapse;
     margin: 15px auto;
 }
 
-.editActivitiesFormTable td,
+.editActivityFormTable td,
 th,
 tr {
     border: 1px solid #000;
