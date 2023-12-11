@@ -53,8 +53,6 @@ include("include/config.php");
     }
     ?>
 
-    <?php echo exec('whoami'); ?>
-
     <section>
         <div class="container-fluid">
             <form action="include/edit_profile_action.php" method="POST" id="editProfileForm" class="edit-profile-form" enctype="multipart/form-data">

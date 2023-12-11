@@ -4,7 +4,8 @@ include("config.php");
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// variables
+// Variables
+$action = "";
 $matricNo = "";
 $name = "";
 $email = "";
@@ -13,84 +14,68 @@ $mentorName = "";
 $motto = "";
 $photo = "";
 
-// for upload
-$target_dir = "/opt/lampp/htdocs/Web-LabFinal/uploads/";
+//for upload
+$target_dir = "uploads/";
 $target_file = "";
 $uploadOk = 0;
 $imageFileType = "";
 $uploadfileName = "";
-$message = "error";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // value for add or edit
-    $matricNo = $_SESSION['UID'];
+    // prepare data
+    $matricNo = $_SESSION["UID"];
     $name = $_POST["name"];
     $email = $_POST["email"];
     $program = $_POST["program"];
     $mentorName = $_POST["mentorName"];
     $motto = $_POST["motto"];
 
-    $filetmp = $_FILES["fileToUpload"];
-    //file of the image/photo file
-    $uploadfileName = $filetmp["name"];
-
     // Check if there is an image to be uploaded
+    if (isset($_FILES["fileToUpload"]) && $_FILES["fileToUpload"]["error"] == UPLOAD_ERR_OK) {
 
-    // IF no image
-    if (isset($_FILES["fileToUpload"]) && $_FILES["fileToUpload"]["name"] == "") {
-        $sql = "UPDATE Student SET name='$name',email='$email',program='$program',mentorID='$mentorName',motto='$motto',photo='$uploadfileName' WHERE matricNo='$matricNo'";
-
-        $status = update_DBTable($conn, $sql);
-
-        if ($status) {
-            $message = "Form data updated successfully";
-            include("./success_update_profile.php");
-        } else {
-            $message = "Sorry, there was an error uploading your file";
-            include("./error_update_profile.php");
-        }
-    }
-    // IF there is image
-    else if (isset($_FILES["fileToUpload"]) && $_FILES["fileToUpload"]["error"] == UPLOAD_ERR_OK) {
-        // Variable to determine for imagge upload is OK
-        $uploadOk = 1;
-        $fileTemp = $_FILES["fileToUpload"];
-
-        // file of the image/photo file
-        $uploadfileName = $fileTemp["name"];
-
+        $filetmp = $_FILES["fileToUpload"];
+        $uploadfileName = $filetmp["name"];
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
         // Check if file already exists
         if (file_exists($target_file)) {
-            $message = "ERROR: Sorry, image file $uploadFileName already exists";
+            $message = "Sorry, image file $uploadFileName already exists";
+            $uploadOk = 0;
             include("./error_update_profile.php");
         }
 
         // Check file size <= 488.28KB or 500000 bytes
         if ($_FILES["fileToUpload"]["size"] > 500000) {
-            $message = "ERROR: Sorry, your file is too large. Try resizing your image.";
+            $message = "Sorry, your file is too large. Try resizing your image.";
+            $uploadOk = 0;
             include("./error_update_profile.php");
         }
 
         // Allow only these file formats
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-            $message = "ERROR: Sorry, only JPG, JPEG, PNG files are allowed.";
+        if (
+            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif"
+        ) {
+            $message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed";
+            $uploadOk = 0;
             include("./error_update_profile.php");
         }
 
-        // If uploadOk, then try add to database first,
-        // uploadOk=1, if there is image to be uploaded, filename not exists, file size is ok and format ok
-        if ($uploadOk) {
+        // Check if uploadOk==1 and continue
+        if ($uploadfileName != "" && $uploadOk == 1) {
+
             $sql = "UPDATE Student SET name='$name',email='$email',program='$program',mentorID='$mentorName',motto='$motto',photo='$uploadfileName' WHERE matricNo='$matricNo'";
 
             $status = update_DbTable($conn, $sql);
 
             if ($status) {
-                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                    // Image file successfully uploaded
+                if (move_uploaded_file(
+                    $_FILES["fileToUpload"]["tmp_name"],
+                    $target_file
+                )) {
                     $message = "Form data updated successfully";
                     include("./success_update_profile.php");
                 } else {
@@ -98,10 +83,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     include("./error_update_profile.php");
                 }
             } else {
+                $message = "Sorry, there was an error uploading your data";
                 include("./error_update_profile.php");
             }
         }
-        include("./error_update_profile.php");
+    }
+    // There is no image to be uploaded so save the record
+    else {
+        $sql = "UPDATE Student SET name='$name',email='$email',program='$program',mentorID='$mentorName',motto='$motto' WHERE matricNo='$matricNo'";
+
+        $status = update_DbTable($conn, $sql);
+
+        if ($status) {
+            $message = "Form data updated successfully";
+            include("./success_update_profile.php");
+        } else {
+            $message = "Sorry, there was an error uploading your data";
+            include("./error_update_profile.php");
+        }
     }
 }
 mysqli_close($conn);
