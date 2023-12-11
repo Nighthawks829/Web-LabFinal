@@ -117,7 +117,7 @@ include("include/config.php");
                                 <td>Remark</td>
                                 <td>:</td>
                                 <td>
-                                    <textarea rows="5" name="remark" id="remark" cols="10"></textarea>
+                                    <textarea rows="5" name="remark" id="remark"></textarea>
                                 </td>
                             </tr>
                             <tr>

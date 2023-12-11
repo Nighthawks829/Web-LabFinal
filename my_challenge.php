@@ -1,3 +1,8 @@
+<?php
+session_start();
+include("include/config.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,118 +29,17 @@
             <i class="fa fa-bars"></i></a>
     </nav>
 
-    <!-- <section>
-        <h1>My Challenge</h1>
-        <h2>List of Challenge and Plan</h2>
+    <?php
 
-        <table class="challengeTable">
-            <tr>
-                <th>No</th>
-                <th>Sem & Year</th>
-                <th>Challenges</th>
-                <th>Plan</th>
-                <th>Remarks</th>
-                <th></th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1 2022/2023</td>
-                <td>Persatuan Mahasiwa FKI</td>
-                <td>Commitee</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>1 2022/2023</td>
-                <td>Photoshop Workshop</td>
-                <td>Leader</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
 
+    if (isset($_SESSION['UID']) && !empty($_SESSION['UID'])) {
+        $sql = "SELECT * FROM Challenge WHERE matricNo='" . $_SESSION["UID"] . "'";
+        $result = mysqli_query($conn, $sql);
+    }
 
-        <div class="challengeInputField">
-            <h3>Add Challenge</h3>
-            <p>Required field with mark*</p>
-
-            <form method="POST" action="" enctype="multipart/form-data" class="challengeForm">
-                <table class="challengeFormTable">
-                    <tr>
-                        <td>Semester*</td>
-                        <td width="1px">:</td>
-                        <td>
-                            <select size="1" name="sem" required>
-                                <option value="">&nbsp;</option>
-                                <option value="1">1</option>;
-                                <option value="2">2</option>;
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Year*</td>
-                        <td>:</td>
-                        <td>
-                            <input type=\"text\" name="year" size="5" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Challenge*</td>
-                        <td>:</td>
-                        <td>
-                            <textarea rows="4" name="challenge" cols="20" required></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Plan*</td>
-                        <td>:</td>
-                        <td>
-                            <textarea rows="4" name="plan" cols="20" required></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Remark</td>
-                        <td>:</td>
-                        <td>
-                            <textarea rows="4" name="remark" cols="20"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Upload photo</td>
-                        <td>:</td>
-                        <td>
-                            Max size: 488.28KB<br>
-                            <input type="file" name="fileToUpload" id="fileToUpload" accept=".jpg, .jpeg, .png">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" align="right">
-                            <input type="submit" value="Submit" name="B1">
-                            <input type="reset" value="Reset" name="B2">
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-    </section> -->
-
+    ?>
     <section>
         <div class="container-fluid">
             <h1>My Challenge</h1>
@@ -152,43 +56,30 @@
                         <th>Photo</th>
                         <th>&nbsp;</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>1 2022/2023</td>
-                        <td>Persatuan Mahasiwa FKI</td>
-                        <td>Commitee</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="edit_challenge.php">Edit</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>1 2022/2023</td>
-                        <td>Photoshop Workshop</td>
-                        <td>Leader</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
+                    <?php
+
+                    if (mysqli_num_rows($result) > 0) {
+                        $numRow = 1;
+                        while ($row = mysqli_fetch_array($result)) {
+                            echo "<tr>";
+                            echo "<td>$numRow</td>";
+                            echo "<td>" . $row["semester"] . " " . $row["year"] . "</td>";
+                            echo "<td>" . $row["challenge"] . "</td>";
+                            echo "<td>" . $row["plans"] . "</td>";
+                            echo "<td>" . $row["remarks"] . "</td>";
+                            echo '<td><a href="uploads/' . $row["photo"] . '" target="_blank">' . $row["photo"] . '</a></td>';
+                            echo "<td class=\"text-center\">";
+                            echo "<a href=\"edit_challenge.php?id=" . $row["challengeID"] . "\">Edit</a>";
+                            echo "&nbsp;&nbsp";
+                            echo '<a href="include/delete_challenge_action.php?id=' . $row["challengeID"] . '" onClick="return confirm(\'Delete?\');">Delete</a> </td>';
+                            echo "</td>";
+                            $numRow = $numRow + 1;
+                        }
+                    } else {
+                        echo '<tr><td colspan="7">0 results</td></tr>';
+                    }
+
+                    ?>
                 </table>
             </div>
             <div class="d-flex justify-content-center align-items-center flex-column">
@@ -196,13 +87,13 @@
                 <h6>Required field with mark*</h6>
 
                 <div class="col-lg-9">
-                    <form action="" class="kpiForm">
-                        <table class="challengeFormTable">
+                    <form action="include/add_challenge_action.php" method="POST" enctype="multipart/form-data" class="addChallengeForm" id="addChallengeForm">
+                        <table class="addChallengeFormTable">
                             <tr>
                                 <td>Semester*</td>
                                 <td width="1px">:</td>
                                 <td>
-                                    <select size="1" name="sem" required>
+                                    <select size="1" name="semester" id="semester" required>
                                         <option value="">&nbsp;</option>
                                         <option value="1">1</option>;
                                         <option value="2">2</option>;
@@ -213,28 +104,28 @@
                                 <td>Year*</td>
                                 <td>:</td>
                                 <td>
-                                    <input type=\"text\" name="year" size="10" required>
+                                    <input type="text" name="year" id="year" size="10" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Challenge</td>
                                 <td>:</td>
                                 <td>
-                                    <input name="name" type=\"text\" required>
+                                    <input type="text" name="challenge" id="challenge" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Plan</td>
                                 <td>:</td>
                                 <td>
-                                    <input name="name" type=\"text\" required>
+                                    <input type="text" name="plan" id="plan" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Remark</td>
                                 <td>:</td>
                                 <td>
-                                    <textarea rows="5" name="remark" cols="25"></textarea>
+                                    <textarea rows="5" name="remark" id="remark"></textarea>
                                 </td>
                             </tr>
                             <tr>
