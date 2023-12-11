@@ -1,3 +1,8 @@
+<?php
+session_start();
+include("include/config.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +29,19 @@
             <i class="fa fa-bars"></i></a>
     </nav>
 
+    <?php
+
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
+    if (isset($_SESSION['UID']) && !empty($_SESSION['UID'])) {
+        $sql = "SELECT * FROM Activities WHERE matricNo='" . $_SESSION["UID"] . "'";
+        $result = mysqli_query($conn, $sql);
+    }
+
+    ?>
+
+
     <section>
         <div class="container-fluid">
             <h1>My Activities</h1>
@@ -37,53 +55,44 @@
                         <th>Photo</th>
                         <th>&nbsp;</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>1 2022/2023</td>
-                        <td>Persatuan Mahasiwa FKI</td>
-                        <td>Commitee</td>
-                        <td>&nbsp;</td>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="edit_activities.php">Edit</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>1 2022/2023</td>
-                        <td>Photoshop Workshop</td>
-                        <td>Leader</td>
-                        <td>&nbsp;</td>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
+                    <?php
+                    if (mysqli_num_rows($result) > 0) {
+                        $numRow = 1;
+                        while ($row = mysqli_fetch_array($result)) {
+                            echo "<tr>";
+                            echo "<td>$numRow</td>";
+                            echo "<td>" . $row["semester"] . " " . $row["year"] . "</td>";
+                            echo "<td>" . $row["activityName"] . "</td>";
+                            echo "<td>" . $row["remarks"] . "</td>";
+                            echo '<td><a href="uploads/' . $row["photo"] . '" target="_blank">' . $row["photo"] . '</a></td>';
+                            echo "<td class=\"text-center\">";
+                            echo "<a href=\"edit_activities.php?id=" . $row["activityID"] . "\">Edit</a>";
+                            echo "&nbsp;&nbsp";
+                            echo "<a href=\"delete_activities.php?id=" . $row["activityID"] . "\">Delete</a>";
+                            echo "</td>";
+                            $numRow = $numRow + 1;
+                        }
+                    } else {
+                        echo '<tr><td colspan="6">0 results</td></tr>';
+                    }
+                    ?>
                 </table>
             </div>
+
+
             <div class="d-flex justify-content-center align-items-center flex-column">
                 <h2>Add Activity</h2>
+
                 <h6>Required field with mark*</h6>
 
                 <div class="col-lg-9">
-                    <form action="" class="kpiForm">
-                        <table class="activitiesFormTable">
+                    <form action="include/add_activities_action.php" method="POST" class="addActivitiesForm" id="addActivitiesFormTable" enctype="multipart/form-data">
+                        <table class=" addActivitiesFormTable">
                             <tr>
                                 <td>Semester*</td>
                                 <td width="1px">:</td>
                                 <td>
-                                    <select size="1" name="sem" required>
+                                    <select size="1" name="semester" id="semester" required>
                                         <option value="">&nbsp;</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -94,28 +103,28 @@
                                 <td>Year*</td>
                                 <td>:</td>
                                 <td>
-                                    <input type=\"text\" name="year" size="10" required>
+                                    <input type="text" name="year" id="year" size="10" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Name of Activities</td>
                                 <td>:</td>
                                 <td>
-                                    <input name="name" type=\"text\" required>
+                                    <input type="text" name="activitiesName" id="activitiesName" size="30" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Remark</td>
                                 <td>:</td>
                                 <td>
-                                    <textarea rows="5" name="remark" cols="10"></textarea>
+                                    <textarea rows="5" name="remark" id="remark" cols="10"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Photo</td>
                                 <td>:</td>
                                 <td>
-                                   <small>Max size: 488.28KB</small>
+                                    <small>Max size: 488.28KB</small>
                                     <input type="file" name="fileToUpload" id="fileToUpload" accept=".jpg, .jpeg, .png">
                                 </td>
                             </tr>
@@ -130,90 +139,6 @@
             </div>
         </div>
     </section>
-
-    <!-- <section>
-        <h1>My Activities</h1>
-        <table class="activities_table">
-            <tr>
-                <th>No</th>
-                <th>Sem & Year</th>
-                <th>Name of Activities Club Association Competition</th>
-                <th>Remarks</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1 2022/2023</td>
-                <td>Persatuan Mahasiwa FKI</td>
-                <td>Commitee</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>1 2022/2023</td>
-                <td>Photoshop Workshop</td>
-                <td>Leader</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
-
-        <div class="activitiesInputField">
-            <h3>Add KPI</h3>
-            <p>Required field with mark*</p>
-
-            <form method="POST" action="" enctype="multipart/form-data" class="activitiesForm">
-                <table class="activitiesFormTable">
-                    <tr>
-                        <td>Semester*</td>
-                        <td width="1px">:</td>
-                        <td>
-                            <select size="1" name="sem" required>
-                                <option value="">&nbsp;</option>
-                                <option value="1">1</option>;
-                                <option value="2">2</option>;
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Year*</td>
-                        <td>:</td>
-                        <td>
-                            <input type=\"text\" name="year" size="5" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Activities*</td>
-                        <td>:</td>
-                        <td>
-                            <input name="activities" type=\"text\" size="30" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Remark</td>
-                        <td>:</td>
-                        <td>
-                            <textarea rows="4" name="remark" cols="20"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" align="right">
-                            <input type="submit" value="Submit" name="B1">
-                            <input type="reset" value="Reset" name="B2">
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-    </section> -->
 
 
     <script src="script/script.js"></script>

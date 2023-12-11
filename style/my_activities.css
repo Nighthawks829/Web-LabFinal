@@ -61,13 +61,13 @@ p {
 
 } */
 
-.activitiesFormTable {
+.addActivitiesFormTable {
     width: 100%;
     border-collapse: collapse;
     margin: 15px auto;
 }
 
-.activitiesFormTable td,
+.addActivitiesFormTable td,
 th,
 tr {
     border: 1px solid #000;

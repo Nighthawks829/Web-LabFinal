@@ -7,17 +7,14 @@ ini_set('display_errors', 1);
 // Variables
 $action = "";
 $matricNo = "";
-$name = "";
-$email = "";
-$program = "";
-$mentorName = "";
-$motto = "";
+$activitiesName = "";
+$semester;
+$year = "";
+$remark = "";
 $photo = "";
 
 //for upload
-// $target_dir = "/opt/lampp/htdocs/Web-LabFinal/uploads/";
 $target_dir = "./../uploads/";
-
 $target_file = "";
 $uploadOk = 0;
 $imageFileType = "";
@@ -27,11 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // prepare data
     $matricNo = $_SESSION["UID"];
-    $name = $_POST["name"];
-    $email = $_POST["email"];
-    $program = $_POST["program"];
-    $mentorName = $_POST["mentorName"];
-    $motto = $_POST["motto"];
+    $semester = $_POST["semester"];
+    $year = $_POST["year"];
+    $activitiesName = $_POST["activitiesName"];
+    $remark = $_POST["remark"];
 
     // Check if there is an image to be uploaded
     if (isset($_FILES["fileToUpload"]) && $_FILES["fileToUpload"]["error"] == UPLOAD_ERR_OK) {
@@ -46,14 +42,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (file_exists($target_file)) {
             $message = "Sorry, image file $uploadfileName already exists";
             $uploadOk = 0;
-            include("./error_update_profile.php");
+            include("./add_activities_message.php");
         }
 
         // Check file size <= 488.28KB or 500000 bytes
         if ($_FILES["fileToUpload"]["size"] > 500000) {
             $message = "Sorry, your file is too large. Try resizing your image.";
             $uploadOk = 0;
-            include("./error_update_profile.php");
+            include("./add_activities_message.php");
         }
 
         // Allow only these file formats
@@ -63,13 +59,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ) {
             $message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed";
             $uploadOk = 0;
-            include("./error_update_profile.php");
+            include("./add_activities_message.php");
         }
 
         // Check if uploadOk==1 and continue
         if ($uploadfileName != "" && $uploadOk == 1) {
 
-            $sql = "UPDATE Student SET name='$name',email='$email',program='$program',mentorID='$mentorName',motto='$motto',photo='$uploadfileName' WHERE matricNo='$matricNo'";
+            $sql = "INSERT INTO Activities(matricNo,activityName,semester,year,remarks,photo) VALUES ('$matricNo','$activitiesName',$semester,'$year','$remark','$uploadfileName')";
 
             $status = update_DbTable($conn, $sql);
 
@@ -78,30 +74,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_FILES["fileToUpload"]["tmp_name"],
                     $target_file
                 )) {
-                    $message = "Form data updated successfully";
-                    include("./success_update_profile.php");
+                    $message = "Form data and file updated successfully";
+                    include("./add_activities_message.php");
                 } else {
                     $message = "Sorry, there was an error uploding your file";
-                    include("./error_update_profile.php");
+                    include("./add_activities_message.php");
                 }
             } else {
                 $message = "Sorry, there was an error uploading your data";
-                include("./error_update_profile.php");
+                include("./add_activities_message.php");
             }
         }
     }
     // There is no image to be uploaded so save the record
     else {
-        $sql = "UPDATE Student SET name='$name',email='$email',program='$program',mentorID='$mentorName',motto='$motto' WHERE matricNo='$matricNo'";
+        $sql = "INSERT INTO Activities(matricNo,activityName,semester,year,remarks) VALUES ('$matricNo','$activitiesName',$semester,'$year','$remark')";
 
         $status = update_DbTable($conn, $sql);
 
         if ($status) {
             $message = "Form data updated successfully";
-            include("./success_update_profile.php");
+            include("./add_activities_message.php");
         } else {
             $message = "Sorry, there was an error uploading your data";
-            include("./error_update_profile.php");
+            include("./add_activities_message.php");
         }
     }
 }
