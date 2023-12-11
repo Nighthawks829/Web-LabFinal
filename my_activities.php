@@ -68,7 +68,7 @@ include("include/config.php");
                             echo "<td class=\"text-center\">";
                             echo "<a href=\"edit_activities.php?id=" . $row["activityID"] . "\">Edit</a>";
                             echo "&nbsp;&nbsp";
-                            echo "<a href=\"delete_activities.php?id=" . $row["activityID"] . "\">Delete</a>";
+                            echo '<a href="include/delete_activity_action.php?id=' . $row["activityID"] . '" onClick="return confirm(\'Delete?\');">Delete</a> </td>';
                             echo "</td>";
                             $numRow = $numRow + 1;
                         }
