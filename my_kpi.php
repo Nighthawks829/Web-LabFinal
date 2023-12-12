@@ -135,7 +135,7 @@ include("include/config.php");
                         } else {
                             echo "<tr>";
                             echo "<td>2</td>";
-                            echo "<td colspan='9'>Stuednt Activities</td>";
+                            echo "<td colspan='9'>Student Activities</td>";
                         }
                     }
                     echo "</tr>";
@@ -215,105 +215,6 @@ include("include/config.php");
                         echo "</tr>";
                     }
                     ?>
-
-
-                    <!-- <tr>
-                        <td>1</td>
-                        <td>CGPA</td>
-                        <?php
-                        ?>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="edit_kpi.php">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td align="center" rowspan="5">2</td>
-                        <td colspan="7">Student Activity</td>
-                    </tr>
-                    <tr>
-                        <td>Faculty</td>
-                        <td>4</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td>University</td>
-                        <td>4</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td>National</td>
-                        <td>1</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td>International</td>
-                        <td>1</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td align="center" rowspan="5">3</td>
-                        <td colspan="7">Competition</td>
-                    </tr>
-                    <tr>
-                        <td>Faculty</td>
-                        <td>2</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td>University</td>
-                        <td>2</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td>National</td>
-                        <td>1</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td>International</td>
-                        <td>1</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Leadership</td>
-                        <td>2</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="">Edit</a></td>
-                    </tr> -->
                 </table>
             </div>
 
@@ -329,7 +230,7 @@ include("include/config.php");
                                 <td>
                                     <select size="1" name="indicator" id="indicator" required>
                                         <option value="">&nbsp;</option>
-                                        <option value="1">CGP</option>;
+                                        <option value="1">CGPA</option>;
                                         <option value="2">Student Activities</option>;
                                         <option value="3">Competition</option>;
                                         <option value="4">LeaderShip</option>;
