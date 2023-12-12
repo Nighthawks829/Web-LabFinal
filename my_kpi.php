@@ -115,7 +115,7 @@ include("include/config.php");
                             $result_length = mysqli_num_rows($result) + 1;
                             echo "<tr>";
                             echo "<td rowspan='$result_length'>2</td>";
-                            echo "<td colspan='9'>Stuednt Activities</td>";
+                            echo "<td colspan='9'>Student Activities</td>";
 
                             while ($row = mysqli_fetch_array($result)) {
                                 echo "<tr>";
