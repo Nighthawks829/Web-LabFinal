@@ -1,3 +1,8 @@
+<?php
+session_start();
+include("include/config.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,20 +31,51 @@
             <i class="fa fa-bars"></i></a>
     </nav>
 
+    <?php
+
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
+    if (isset($_SESSION['UID']) && !empty($_SESSION['UID'])) {
+        $sql = "SELECT * FROM Challenge WHERE challengeID='" . $_GET['id'] . "' LIMIT 1";
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) == 1) {
+            $row = mysqli_fetch_assoc($result);
+
+            $matricNo = $_SESSION["UID"];
+            $semester = $row["semester"];
+            $year = $row["year"];
+            $challenge = $row["challenge"];
+            $plan = $row["plans"];
+            $remark = $row["remarks"];
+            $photo = $row["photo"];
+        }
+    }
+    ?>
+
     <section>
         <div class="d-flex justify-content-center align-items-center flex-column">
             <h1>Edit Challenge</h1>
             <div class="col-lg-9">
-                <form action="" class="editChallengeForm">
+                <form action="include/edit_challenge_action.php" method="POST" enctype="multipart/form-data" class="editChallengeForm">
+                    <input type="text" id="id" name="id" value="<?= $_GET['id'] ?>" hidden>
                     <table class="editChallengeFormTable">
                         <tr>
                             <td>Semester*</td>
                             <td width="1px">:</td>
                             <td>
-                                <select size="1" name="sem" required>
+                                <select size="1" name="semester" required>
                                     <option value="">&nbsp;</option>
-                                    <option value="1">1</option>;
-                                    <option value="2">2</option>;
+                                    <?php
+                                    if ($semester == 1) {
+                                        echo '<option value="1" selected>1</option>';
+                                        echo '<option value="2">2</option>';
+                                    } else {
+                                        echo '<option value="1">1</option>';
+                                        echo '<option value="2" selected>2</option>';
+                                    }
+                                    ?>
                                 </select>
                             </td>
                         </tr>
@@ -47,34 +83,46 @@
                             <td>Year*</td>
                             <td>:</td>
                             <td>
-                                <input type=\"text\" name="year" size="10" required>
+                                <?php
+                                echo "<input type=\"text\" name=\"year\" id=\"year\" size=\"10\" value='$year' required>";
+                                ?>
                             </td>
                         </tr>
                         <tr>
                             <td>Challenge*</td>
                             <td>:</td>
                             <td>
-                                <input name="kpi" type=\"text\" required>
+                                <?php
+                                echo "<input type=\"text\" name=\"challenge\" id=\"challenge\" value='$challenge' required>";
+                                ?>
                             </td>
                         </tr>
                         <tr>
                             <td>Plan*</td>
                             <td>:</td>
                             <td>
-                                <input name="kpi" type=\"text\" required>
+                                <?php
+                                echo "<input type=\"text\" name=\"plan\" id=\"plan\" value='$plan' required>";
+                                ?>
                             </td>
                         </tr>
                         <tr>
                             <td>Remark</td>
                             <td>:</td>
                             <td>
-                                <textarea rows="5" name="remark" cols="25"></textarea>
+                                <?php
+                                echo "<textarea rows=\"5\" name=\"remark\" cols=\"25\">$remark</textarea>";
+                                ?>
                             </td>
                         </tr>
                         <tr>
                             <td>Photo</td>
                             <td>:</td>
                             <td>
+                                <?php
+                                if ($photo != "")
+                                    echo "<small>$photo</small><br>";
+                                ?>
                                 <small>Max size: 488.28KB</small>
                                 <input type="file" name="fileToUpload" id="fileToUpload" accept=".jpg, .jpeg, .png">
                             </td>

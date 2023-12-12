@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Check if uploadOk==1 and continue
         if ($uploadfileName != "" && $uploadOk == 1) {
 
-            $sql = "UPDATE Student SET name='$name',email='$email',program='$program',mentorID='$mentorName',motto='$motto',photo='$uploadfileName' WHERE matricNo='$matricNo'";
+            $sql = "UPDATE Student SET name='$name',email='$email',program='$program',mentorName='$mentorName',motto='$motto',photo='$uploadfileName' WHERE matricNo='$matricNo'";
 
             $status = update_DbTable($conn, $sql);
 
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // There is no image to be uploaded so save the record
     else {
-        $sql = "UPDATE Student SET name='$name',email='$email',program='$program',mentorID='$mentorName',motto='$motto' WHERE matricNo='$matricNo'";
+        $sql = "UPDATE Student SET name='$name',email='$email',program='$program',mentorName='$mentorName',motto='$motto' WHERE matricNo='$matricNo'";
 
         $status = update_DbTable($conn, $sql);
 

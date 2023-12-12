@@ -79,7 +79,7 @@ include("include/config.php");
                         echo "</tr>";
                         echo "<tr>";
                         echo "<td>Mentor Name</td>";
-                        echo "<td>" . $row["mentorID"] . "</td>";
+                        echo "<td>" . $row["mentorName"] . "</td>";
                         echo "</tr>";
                         echo "</table>";
                         echo "<h3>My Study Motto</h3>";

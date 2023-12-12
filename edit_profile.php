@@ -46,7 +46,7 @@ include("include/config.php");
             $name = $row["name"];
             $email = $row["email"];
             $program = $row["program"];
-            $mentorName = $row["mentorID"];
+            $mentorName = $row["mentorName"];
             $motto = $row["motto"];
             $photo = $row["photo"];
         }

@@ -57,17 +57,17 @@ th {
     text-align: center;
 } */
 
-.kpiForm {
+.addKpiForm {
     margin-top: 10px;
 }
 
-.kpiFormTable {
+.addKpiFormTable {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 15px;
 }
 
-.kpiFormTable td,
+.adKpiFormTable td,
 th {
     border: 1px solid #000;
 }

@@ -1,3 +1,8 @@
+<?php
+session_start();
+include("include/config.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,119 +32,22 @@
             <i class="fa fa-bars"></i></a>
     </nav>
 
-    <!-- <h1>My Study KPI</h1> -->
+    <?php
+    // error_reporting(E_ALL);
+    // ini_set('display_errors', 1);
 
-    <!-- <h2>KPI Indicator</h2> -->
+    // if (isset($_SESSION['UID']) && !empty($_SESSION['UID'])) {
+    //     $sql = "SELECT * FROM Kpi WHERE matricNo='" . $_SESSION["UID"] . "'";
+    //     $result = mysqli_query($conn, $sql);
 
-    <!-- <section>
-
-        <h1>KPI Indicator</h1>
-
-        <table border="1" width="100%" class="kpi-table">
-            <tr>
-                <th>No</th>
-                <th>Indicator</th>
-                <th>Faculty KPI</th>
-                <th>My KPI</th>
-                <th>Semester</th>
-                <th>Year</th>
-                <th>Remarks</th>
-            </tr>
-            <tr>
-                <td align="center">1</td>
-                <td>CGPA</td>
-                <td align="center">&gt;=3.0</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td align="center" rowspan="5">2</td>
-                <td colspan="6">Student Activity</td>
-            </tr>
-            <tr>
-                <td>Faculty</td>
-                <td align="center">4</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>University</td>
-                <td align="center">4</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>National</td>
-                <td align="center">1</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>International</td>
-                <td align="center">1</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
-
-        <div class="kpiInputField">
-            <h3>Add KPI</h3>
-            <p>Required field with mark*</p>
-
-            <form method="POST" action="" enctype="multipart/form-data" class="kpiForm">
-                <table class="kpiFormTable">
-                    <tr>
-                        <td>Semester*</td>
-                        <td width="1px">:</td>
-                        <td>
-                            <select size="1" name="sem" required>
-                                <option value="">&nbsp;</option>
-                                <option value="1">1</option>;
-                                <option value="2">2</option>;
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Year*</td>
-                        <td>:</td>
-                        <td>
-                            <input type=\"text\" name="year" size="5" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>KPI*</td>
-                        <td>:</td>
-                        <td>
-                            <input name="kpi" type=\"text\" size="5" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Remark</td>
-                        <td>:</td>
-                        <td>
-                            <textarea rows="4" name="remark" cols="20"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" align="right">
-                            <input type="submit" value="Submit" name="B1">
-                            <input type="reset" value="Reset" name="B2">
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-    </section> -->
+    //     if (mysqli_num_rows($result) > 0) {
+    //         while ($row = mysqli_fetch_array($result)) {
+    //             $cgpa = $row["indicator"];
+    //             echo $cgpa;
+    //         }
+    //     }
+    // }
+    ?>
 
     <section>
         <div class="container-fluid">
@@ -156,14 +64,164 @@
                         <th>Remarks</th>
                         <th>&nbsp;</th>
                     </tr>
-                    <tr>
+
+
+                    <?php
+
+                    error_reporting(E_ALL);
+                    ini_set('display_errors', 1);
+
+                    if (isset($_SESSION['UID']) && !empty($_SESSION['UID'])) {
+                        $sql = "SELECT * FROM Kpi WHERE matricNo='" . $_SESSION["UID"] . "' AND indicator='CGPA'";
+                        $result = mysqli_query($conn, $sql);
+
+                        if (mysqli_num_rows($result) > 0) {
+                            $result_length = mysqli_num_rows($result);
+                            echo "<tr>";
+                            echo "<td rowspan='$result_length'>1</td>";
+                            echo "<td>CGPA</td>";
+
+                            while ($row = mysqli_fetch_array($result)) {
+                                echo "<td>>=3.0</td>";
+                                echo "<td>" . $row["kpi"] . "</td>";
+                                echo "<td>" . $row["semester"] . "</td>";
+                                echo "<td>" . $row["year"] . "</td>";
+                                echo "<td>" . $row["remarks"] . "</td>";
+                                echo "<td class=\"text-center\">";
+                                echo "<a href=\"edit_kpi.php?id=" . $row["kpiID"] . "\">Edit</a>";
+                                echo "&nbsp;&nbsp";
+                                echo '<a href="include/delete_kpi_action.php?id=' . $row["kpiID"] . '" onClick="return confirm(\'Delete?\');">Delete</a> </td>';
+                                echo "</td>";
+                            }
+                        } else {
+                            echo "<tr>";
+                            echo "<td>1</td>";
+                            echo "<td colspan='9'>GPA</td>";
+                        }
+                    }
+                    echo "</tr>";
+                    ?>
+
+                    <?php
+
+                    error_reporting(E_ALL);
+                    ini_set('display_errors', 1);
+
+                    if (isset($_SESSION['UID']) && !empty($_SESSION['UID'])) {
+                        $sql = "SELECT * FROM Kpi WHERE matricNo='" . $_SESSION["UID"] . "' AND indicator='Student Activities'";
+                        $result = mysqli_query($conn, $sql);
+
+                        if (mysqli_num_rows($result) > 0) {
+                            $result_length = mysqli_num_rows($result) + 1;
+                            echo "<tr>";
+                            echo "<td rowspan='$result_length'>2</td>";
+                            echo "<td colspan='9'>Stuednt Activities</td>";
+
+                            while ($row = mysqli_fetch_array($result)) {
+                                echo "<tr>";
+                                echo "<td>" . $row["level"] . "</td>";
+                                echo "<td>4.0</td>";
+                                echo "<td>" . $row["kpi"] . "</td>";
+                                echo "<td>" . $row["semester"] . "</td>";
+                                echo "<td>" . $row["year"] . "</td>";
+                                echo "<td>" . $row["remarks"] . "</td>";
+                                echo "<td class=\"text-center\">";
+                                echo "<a href=\"edit_kpi.php?id=" . $row["kpiID"] . "\">Edit</a>";
+                                echo "&nbsp;&nbsp";
+                                echo '<a href="include/delete_kpi_action.php?id=' . $row["kpiID"] . '" onClick="return confirm(\'Delete?\');">Delete</a> </td>';
+                                echo "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr>";
+                            echo "<td>2</td>";
+                            echo "<td colspan='9'>Stuednt Activities</td>";
+                        }
+                    }
+                    echo "</tr>";
+                    ?>
+
+
+                    <?php
+
+                    error_reporting(E_ALL);
+                    ini_set('display_errors', 1);
+
+                    if (isset($_SESSION['UID']) && !empty($_SESSION['UID'])) {
+                        $sql = "SELECT * FROM Kpi WHERE matricNo='" . $_SESSION["UID"] . "' AND indicator='Competition'";
+                        $result = mysqli_query($conn, $sql);
+
+                        if (mysqli_num_rows($result) > 0) {
+                            $result_length = mysqli_num_rows($result) + 1;
+                            echo "<tr>";
+                            echo "<td rowspan='$result_length'>3</td>";
+                            echo "<td colspan='9'>Competition</td>";
+
+                            while ($row = mysqli_fetch_array($result)) {
+                                echo "<tr>";
+                                echo "<td>" . $row["level"] . "</td>";
+                                echo "<td>4.0</td>";
+                                echo "<td>" . $row["kpi"] . "</td>";
+                                echo "<td>" . $row["semester"] . "</td>";
+                                echo "<td>" . $row["year"] . "</td>";
+                                echo "<td>" . $row["remarks"] . "</td>";
+                                echo "<td class=\"text-center\">";
+                                echo "<a href=\"edit_kpi.php?id=" . $row["kpiID"] . "\">Edit</a>";
+                                echo "&nbsp;&nbsp";
+                                echo '<a href="include/delete_kpi_action.php?id=' . $row["kpiID"] . '" onClick="return confirm(\'Delete?\');">Delete</a> </td>';
+                                echo "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr>";
+                            echo "<td>3</td>";
+                            echo "<td colspan='9'>Competition</td>";
+                        }
+                    }
+                    echo "</tr>";
+                    ?>
+
+                    <?php
+                    error_reporting(E_ALL);
+                    ini_set('display_errors', 1);
+
+                    if (isset($_SESSION['UID']) && !empty($_SESSION['UID'])) {
+                        $sql = "SELECT * FROM Kpi WHERE matricNo='" . $_SESSION["UID"] . "' AND indicator='Leadership'";
+                        $result = mysqli_query($conn, $sql);
+
+                        if (mysqli_num_rows($result) > 0) {
+                            $result_length = mysqli_num_rows($result);
+                            echo "<tr>";
+                            echo "<td rowspan='$result_length'>4</td>";
+                            echo "<td>Leadership</td>";
+
+                            while ($row = mysqli_fetch_array($result)) {
+                                echo "<td>>=3.3</td>";
+                                echo "<td>" . $row["kpi"] . "</td>";
+                                echo "<td>" . $row["semester"] . "</td>";
+                                echo "<td>" . $row["year"] . "</td>";
+                                echo "<td>" . $row["remarks"] . "</td>";
+                                echo "<td class=\"text-center\">";
+                                echo "<a href=\"edit_kpi.php?id=" . $row["kpiID"] . "\">Edit</a>";
+                                echo "&nbsp;&nbsp";
+                                echo '<a href="include/delete_kpi_action.php?id=' . $row["kpiID"] . '" onClick="return confirm(\'Delete?\');">Delete</a> </td>';
+                                echo "</td>";
+                            }
+                        } else {
+                            echo "<tr>";
+                            echo "<td>4</td>";
+                            echo "<td colspan='9'>Leadership</td>";
+                        }
+                        echo "</tr>";
+                    }
+                    ?>
+
+
+                    <!-- <tr>
                         <td>1</td>
                         <td>CGPA</td>
-                        <td>&gt;=3.0</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <?php
+                        ?>
                         <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="edit_kpi.php">Edit</a></td>
                     </tr>
                     <tr>
@@ -255,7 +313,7 @@
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td class="text-center"><a href="">Delete</a>&nbsp;&nbsp;<a href="">Edit</a></td>
-                    </tr>
+                    </tr> -->
                 </table>
             </div>
 
@@ -263,18 +321,18 @@
                 <h2>Add KPI</h2>
                 <h6>Required field with mark*</h6>
                 <div class="col-lg-9">
-                    <form action="" class="kpiForm">
-                        <table class="kpiFormTable">
+                    <form action="include/add_kpi_action.php" method="POST" class="addKpiForm" id="addKpiForm">
+                        <table class="addKpiFormTable">
                             <tr>
                                 <td>Indicator*</td>
                                 <td width="1px">:</td>
                                 <td>
-                                    <select size="1" name="indicator" required>
+                                    <select size="1" name="indicator" id="indicator" required>
                                         <option value="">&nbsp;</option>
                                         <option value="1">CGP</option>;
                                         <option value="2">Student Activities</option>;
                                         <option value="3">Competition</option>;
-                                        <option value="3">LeaderShip</option>;
+                                        <option value="4">LeaderShip</option>;
                                     </select>
                                 </td>
                             </tr>
@@ -282,7 +340,7 @@
                                 <td>Level</td>
                                 <td width="1px">:</td>
                                 <td>
-                                    <select size="1" name="level">
+                                    <select size="1" name="level" id="level">
                                         <option value="">&nbsp;</option>
                                         <option value="1">Faculty Level</option>;
                                         <option value="2">University Level</option>;
@@ -295,7 +353,7 @@
                                 <td>Semester*</td>
                                 <td width="1px">:</td>
                                 <td>
-                                    <select size="1" name="sem" required>
+                                    <select size="1" name="semester" id="semester" required>
                                         <option value="">&nbsp;</option>
                                         <option value="1">1</option>;
                                         <option value="2">2</option>;
@@ -306,21 +364,21 @@
                                 <td>Year*</td>
                                 <td>:</td>
                                 <td>
-                                    <input type=\"text\" name="year" size="10" required>
+                                    <input type="text" name="year" id="year" size="10" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td>KPI*</td>
                                 <td>:</td>
                                 <td>
-                                    <input name="kpi" type=\"text\" size="10" required>
+                                    <input type="text" name="kpi" id="kpi" size="10" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Remark</td>
                                 <td>:</td>
                                 <td>
-                                    <textarea rows="5" name="remark" cols="25"></textarea>
+                                    <textarea rows="5" name="remark" id="remark"></textarea>
                                 </td>
                             </tr>
                         </table>

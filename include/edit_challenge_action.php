@@ -6,6 +6,7 @@ ini_set('display_errors', 1);
 
 // Variables
 $action = "";
+$id = "";
 $matricNo = "";
 $challenge = "";
 $plan = "";
@@ -24,7 +25,8 @@ $uploadfileName = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // prepare data
-    $matricNo = $_SESSION["UID"];
+    // $matricNo = $_SESSION["UID"];
+    $id = $_POST["id"];
     $semester = $_POST["semester"];
     $year = $_POST["year"];
     $challenge = $_POST["challenge"];
@@ -67,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Check if uploadOk==1 and continue
         if ($uploadfileName != "" && $uploadOk == 1) {
 
-            $sql = "INSERT INTO Challenge(matricNo,challenge,plans,semester,year,remarks,photo) VALUES ('$matricNo','$challenge','$plan',$semester,'$year','$remark','$uploadfileName')";
+            $sql = "UPDATE Challenge SET semester='$semester',year='$year',challenge='$challenge',plans='$plan',remarks='$remark',photo='$uploadfileName' WHERE challengeID='$id'";
 
             $status = update_DbTable($conn, $sql);
 
@@ -90,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // There is no image to be uploaded so save the record
     else {
-        $sql = "INSERT INTO Challenge(matricNo,challenge,plans,semester,year,remarks) VALUES ('$matricNo','$challenge','$plan',$semester,'$year','$remark')";
+        $sql = "UPDATE Challenge SET semester='$semester',year='$year',challenge='$challenge',plans='$plan',remarks='$remark' WHERE challengeID='$id'";
 
         $status = update_DbTable($conn, $sql);
 

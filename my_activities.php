@@ -110,7 +110,7 @@ include("include/config.php");
                                 <td>Name of Activities</td>
                                 <td>:</td>
                                 <td>
-                                    <input type="text" name="activitiesName" id="activitiesName" size="30" required>
+                                    <input type="text" name="activitiesName" id="activitiesName" required>
                                 </td>
                             </tr>
                             <tr>

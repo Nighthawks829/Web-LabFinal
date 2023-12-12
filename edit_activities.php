@@ -92,7 +92,7 @@ include("include/config.php");
                             <td>:</td>
                             <td>
                                 <?php
-                                echo "<input type=\"text\" name=\"activityName\" id=\"activityName\" size=\"30\" value='$activityName' required>";
+                                echo "<input type=\"text\" name=\"activityName\" id=\"activityName\" value='$activityName' required>";
                                 ?>
 
                             </td>
@@ -111,7 +111,8 @@ include("include/config.php");
                             <td>:</td>
                             <td>
                                 <?php
-                                echo "<small>$photo</small><br>";
+                                if ($photo != "")
+                                    echo "<small>$photo</small><br>";
                                 ?>
                                 <small>Max size: 488.28KB</small>
                                 <input type="file" name="fileToUpload" id="fileToUpload" accept=".jpg, .jpeg, .png">
