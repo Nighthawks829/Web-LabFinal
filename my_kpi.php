@@ -74,14 +74,14 @@ include("include/config.php");
                     if (isset($_SESSION['UID']) && !empty($_SESSION['UID'])) {
                         $sql = "SELECT * FROM Kpi WHERE matricNo='" . $_SESSION["UID"] . "' AND indicator='CGPA'";
                         $result = mysqli_query($conn, $sql);
-
                         if (mysqli_num_rows($result) > 0) {
+                            $numRow = 1;
                             $result_length = mysqli_num_rows($result);
                             echo "<tr>";
                             echo "<td rowspan='$result_length'>1</td>";
                             echo "<td>CGPA</td>";
 
-                            while ($row = mysqli_fetch_array($result)) {
+                            while ($row = mysqli_fetch_array($result)) {                                
                                 echo "<td>>=3.0</td>";
                                 echo "<td>" . $row["kpi"] . "</td>";
                                 echo "<td>" . $row["semester"] . "</td>";
@@ -92,6 +92,7 @@ include("include/config.php");
                                 echo "&nbsp;&nbsp";
                                 echo '<a href="include/delete_kpi_action.php?id=' . $row["kpiID"] . '" onClick="return confirm(\'Delete?\');">Delete</a> </td>';
                                 echo "</td>";
+                                
                             }
                         } else {
                             echo "<tr>";
