@@ -7,10 +7,10 @@ if (isset($_GET["id"]) && $_GET["id"] != "") {
     
     if (mysqli_query($conn, $sql)) {
         $message = "Record deleted successfully<br>";
-        include("./add_kpi_message.php");
+        include("./kpi_message.php");
     } else {
         $message = "Error deleting record: " . mysqli_error($conn) . "<br>";
-        include("./add_kpi_message.php");
+        include("./kpi_message.php");
     }
 }
 mysqli_close($conn);

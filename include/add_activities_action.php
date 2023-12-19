@@ -42,14 +42,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (file_exists($target_file)) {
             $message = "Sorry, image file $uploadfileName already exists";
             $uploadOk = 0;
-            include("./add_activities_message.php");
+            include("./activities_message.php");
         }
 
         // Check file size <= 488.28KB or 500000 bytes
         if ($_FILES["fileToUpload"]["size"] > 500000) {
             $message = "Sorry, your file is too large. Try resizing your image.";
             $uploadOk = 0;
-            include("./add_activities_message.php");
+            include("./activities_message.php");
         }
 
         // Allow only these file formats
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ) {
             $message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed";
             $uploadOk = 0;
-            include("./add_activities_message.php");
+            include("./activities_message.php");
         }
 
         // Check if uploadOk==1 and continue
@@ -75,14 +75,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $target_file
                 )) {
                     $message = "Form data and file updated successfully";
-                    include("./add_activities_message.php");
+                    include("./activities_message.php");
                 } else {
                     $message = "Sorry, there was an error uploding your file";
-                    include("./add_activities_message.php");
+                    include("./activities_message.php");
                 }
             } else {
                 $message = "Sorry, there was an error uploading your data";
-                include("./add_activities_message.php");
+                include("./activities_message.php");
             }
         }
     }
@@ -94,10 +94,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($status) {
             $message = "Form data updated successfully";
-            include("./add_activities_message.php");
+            include("./activities_message.php");
         } else {
             $message = "Sorry, there was an error uploading your data";
-            include("./add_activities_message.php");
+            include("./activities_message.php");
         }
     }
 }

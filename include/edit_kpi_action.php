@@ -53,10 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($status) {
         $message = "Form data and file updated successfully";
-        include("./add_kpi_message.php");
+        include("./kpi_message.php");
     } else {
         $message = "Sorry, there was an error uploading your data";
-        include("./add_kpi_message.php");
+        include("./kpi_message.php");
     }
 }
 mysqli_close($conn);

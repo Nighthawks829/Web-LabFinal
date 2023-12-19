@@ -2,23 +2,23 @@ CREATE Table Mentor(
     mentorID VARCHAR(10) NOT NULL PRIMARY KEY,
     name VARCHAR(30),
     email VARCHAR(30),
-    program VARCHAR(7),
+    program VARCHAR(7)
 );
 
 CREATE Table Student(
     matricNo VARCHAR(10) NOT NULL PRIMARY KEY,
     mentorID VARCHAR(10),
-    name VARCHAR(30),
-    email VARCHAR(30),
+    name VARCHAR(50),
+    email VARCHAR(50),
     program VARCHAR(7),
-    motto VARCHAR(255),
+    motto TEXT,
     photo VARCHAR(255),
     password VARCHAR(100),
     FOREIGN KEY (mentorID) REFERENCES Mentor(mentorID)
 );
 
 CREATE Table Kpi(
-    kpiID VARCHAR(10) NOT NULL PRIMARY KEY,
+    kpiID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     matricNo VARCHAR(10),
     indicator VARCHAR(30),
     level VARCHAR(30),
@@ -26,30 +26,40 @@ CREATE Table Kpi(
     semester INT,
     year VARCHAR(10),
     remarks VARCHAR(255),
-    FOREIGN KEY (matricNo) REFERENCES Student(matricNo)
+    FOREIGN KEY (matricNo) REFERENCES Student(matricNo) ON DELETE CASCADE
 );
 
 CREATE Table Activities(
-    activityID VARCHAR(10) NOT NULL PRIMARY KEY,
+    activityID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     matricNo VARCHAR(10),
-    activityName VARCHAR(100),
+    activityName TEXT,
     semester INT,
     year VARCHAR(10),
-    remarks VARCHAR(255),
+    remarks TEXT,
     photo VARCHAR(50),
-    FOREIGN KEY (matricNo) REFERENCES Student(matricNo)
+    FOREIGN KEY (matricNo) REFERENCES Student(matricNo) ON DELETE CASCADE
 );
 
 
 CREATE Table Challenge(
-    challengeID VARCHAR(10) NOT NULL PRIMARY KEY,
+    challengeID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     matricNo VARCHAR(10),
-    challenge VARCHAR(100),
-    plans VARCHAR(100),
+    challenge TEXT,
+    plans TEXT,
     semester INT,
     year VARCHAR(10),
-    remarks VARCHAR(255),
+    remarks TEXT,
     photo VARCHAR(50),
+    FOREIGN KEY (matricNo) REFERENCES Student(matricNo) ON DELETE CASCADE
 );
 
 
+CREATE Table Profile(
+    profileID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    matricNo VARCHAR(10),
+    name VARCHAR(50),
+    program VARCHAR(50),
+    mentor VARCHAR(50),
+    motto TEXT,    
+    FOREIGN KEY (matricNo) REFERENCES Student(matricNo) ON DELETE CASCADE
+);

@@ -1,3 +1,3 @@
 {
-    "dotnet.defaultSolution": "GenericsBasics.sln"
+    "dotnet.defaultSolution": "asyncScenario.sln"
 }
