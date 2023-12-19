@@ -36,7 +36,7 @@ include("include/config.php");
     ini_set('display_errors', 1);
 
     if (isset($_SESSION['UID']) && !empty($_SESSION['UID'])) {
-        $sql = "SELECT * FROM Student WHERE matricNo='" . $_SESSION["UID"] . "' LIMIT 1";
+        $sql = "SELECT Student.matricNo,Student.name,Student.email,Profile.program,Profile.mentor,Profile.motto,Profile.photo FROM Student INNER JOIN Profile ON Student.matricNo=Profile.matricNo ";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) == 1) {
@@ -46,7 +46,7 @@ include("include/config.php");
             $name = $row["name"];
             $email = $row["email"];
             $program = $row["program"];
-            $mentorName = $row["mentorName"];
+            $mentor = $row["mentor"];
             $motto = $row["motto"];
             $photo = $row["photo"];
         }
@@ -93,7 +93,7 @@ include("include/config.php");
                                 <td>Email</td>
                                 <td>
                                     <?php
-                                    echo "<input type=\"email\" id=\"email\" name=\"email\" value='$email' required>";
+                                    echo $email;
                                     ?>
                                 </td>
                             </tr>
@@ -109,7 +109,7 @@ include("include/config.php");
                                 <td>Mentor Name</td>
                                 <td>
                                     <?php
-                                    echo "<input type=\"text\" id=\"mentorName\" name=\"mentorName\" value='$mentorName' required>";
+                                    echo "<input type=\"text\" id=\"mentor\" name=\"mentor\" value='$mentor' required>";
                                     ?>
                                 </td>
                             </tr>

@@ -28,9 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // prepare data
     $matricNo = $_SESSION["UID"];
     $name = $_POST["name"];
-    $email = $_POST["email"];
     $program = $_POST["program"];
-    $mentorName = $_POST["mentorName"];
+    $mentor = $_POST["mentor"];
     $motto = $_POST["motto"];
 
     // Check if there is an image to be uploaded
@@ -69,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Check if uploadOk==1 and continue
         if ($uploadfileName != "" && $uploadOk == 1) {
 
-            $sql = "UPDATE Student SET name='$name',email='$email',program='$program',mentorName='$mentorName',motto='$motto',photo='$uploadfileName' WHERE matricNo='$matricNo'";
+            $sql = "UPDATE Profile SET name='$name',program='$program',mentor='$mentor',motto='$motto',photo='$uploadfileName' WHERE matricNo='$matricNo'";
 
             $status = update_DbTable($conn, $sql);
 
@@ -92,7 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // There is no image to be uploaded so save the record
     else {
-        $sql = "UPDATE Student SET name='$name',email='$email',program='$program',mentorName='$mentorName',motto='$motto' WHERE matricNo='$matricNo'";
+        // $sql = "UPDATE Profile SET name='$name',email='$email',program='$program',mentorName='$mentorName',motto='$motto' WHERE matricNo='$matricNo'";
+        $sql = "UPDATE Profile SET name='$name',program='$program',mentor='$mentor',motto='$motto' WHERE matricNo='$matricNo'";
 
         $status = update_DbTable($conn, $sql);
 
