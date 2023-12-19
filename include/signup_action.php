@@ -38,10 +38,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO Student(matricNo,name,email,password) VALUES('$userMatricNo','$userName','$userEmail','$pwdHash')";
 
         if (mysqli_query($conn, $sql)) {
-            $message = "New user record created successfully. Welcome $userName";
             // echo "<script>alert('$message');</script>";
             // header("Location: ../success_signup.php");
-            include("./success_signup.php");
+
+            $sql = "INSERT INTO Profile (matricNo,name,program,mentor,motto,photo) VALUES ('$userMatricNo','','','','','')";
+            if (mysqli_query($conn, $sql)) {
+                $message = "New user record created successfully. Welcome $userName. New User Profile record created successfully.";
+                include("./success_signup.php");
+            } else {
+                $message = "Error: $sql \n $error";
+                include("./error_signup.php");
+            }
+
             // echo "Success";
         } else {
             $error = mysqli_error($conn);

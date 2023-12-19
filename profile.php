@@ -42,7 +42,7 @@ include("include/config.php");
                 ini_set('display_errors', 1);
 
                 if (isset($_SESSION['UID']) && !empty($_SESSION['UID'])) {
-                    $sql = "SELECT * FROM Student WHERE matricNo='" . $_SESSION["UID"] . "' LIMIT 1";
+                    $sql = "SELECT Student.matricNo,Student.name,Student.email,Profile.program,Profile.mentor,Profile.motto,Profile.photo FROM Student INNER JOIN Profile ON Student.matricNo=Profile.matricNo ";
                     $result = mysqli_query($conn, $sql);
 
                     if (mysqli_num_rows($result) == 1) {
@@ -79,7 +79,7 @@ include("include/config.php");
                         echo "</tr>";
                         echo "<tr>";
                         echo "<td>Mentor Name</td>";
-                        echo "<td>" . $row["mentorName"] . "</td>";
+                        echo "<td>" . $row["mentor"] . "</td>";
                         echo "</tr>";
                         echo "</table>";
                         echo "<h3>My Study Motto</h3>";
