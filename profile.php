@@ -42,7 +42,8 @@ include("include/config.php");
                 ini_set('display_errors', 1);
 
                 if (isset($_SESSION['UID']) && !empty($_SESSION['UID'])) {
-                    $sql = "SELECT Student.matricNo,Student.name,Student.email,Profile.program,Profile.mentor,Profile.motto,Profile.photo FROM Student INNER JOIN Profile ON Student.matricNo=Profile.matricNo ";
+                    $matricNo = $_SESSION["UID"];
+                    $sql = "SELECT Student.matricNo,Student.name,Student.email,Profile.program,Profile.mentor,Profile.motto,Profile.photo FROM Student INNER JOIN Profile ON Student.matricNo=Profile.matricNo WHERE Student.matricNo='$matricNo'";
                     $result = mysqli_query($conn, $sql);
 
                     if (mysqli_num_rows($result) == 1) {
@@ -90,6 +91,8 @@ include("include/config.php");
                         echo "<a href=\"edit_profile.php\" class=\"submit\">Edit Profile</a>";
                         echo "</div>";
                         echo "</div>";
+                    } else {
+                        echo "No Data in Database";
                     }
                 } else {
                     echo "Not connect to database";

@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($indicatorValue == 1) {
         $indicator = "CGPA";
     } else if ($indicatorValue == 2) {
-        $indicator = "Stuednt Activities";
+        $indicator = "Student Activities";
     } else if ($indicatorValue == 3) {
         $indicator = "Competition";
     } else if ($indicatorValue == 4) {

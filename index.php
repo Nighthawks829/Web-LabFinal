@@ -1,3 +1,8 @@
+<?php
+session_start();
+include("include/config.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +21,16 @@
 </head>
 
 <body>
-    
+
+    <?php
+    if (isset($_SESSION['UID']) && !empty($_SESSION['UID'])) {
+        header("location:./profile.php");
+    } else {
+        header("location:./login.php");
+    }
+
+    ?>
+
 
 
     <script src="script/script.js"></script>
