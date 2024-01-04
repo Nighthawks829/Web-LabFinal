@@ -73,6 +73,7 @@ include("include/config.php");
                             echo "&nbsp;&nbsp";
                             echo '<a href="include/delete_challenge_action.php?id=' . $row["challengeID"] . '" onClick="return confirm(\'Delete?\');">Delete</a> </td>';
                             echo "</td>";
+                            echo "</tr>";
                             $numRow = $numRow + 1;
                         }
                     } else {

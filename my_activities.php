@@ -70,6 +70,7 @@ include("include/config.php");
                             echo "&nbsp;&nbsp";
                             echo '<a href="include/delete_activity_action.php?id=' . $row["activityID"] . '" onClick="return confirm(\'Delete?\');">Delete</a> </td>';
                             echo "</td>";
+                            echo "<tr>";
                             $numRow = $numRow + 1;
                         }
                     } else {
