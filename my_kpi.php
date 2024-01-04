@@ -79,9 +79,9 @@ include("include/config.php");
                             $result_length = mysqli_num_rows($result);
                             echo "<tr>";
                             echo "<td rowspan='$result_length'>1</td>";
-                            echo "<td>CGPA</td>";
 
-                            while ($row = mysqli_fetch_array($result)) {                                
+                            while ($row = mysqli_fetch_array($result)) {
+                                echo "<td>CGPA</td>";
                                 echo "<td>>=3.0</td>";
                                 echo "<td>" . $row["kpi"] . "</td>";
                                 echo "<td>" . $row["semester"] . "</td>";
@@ -92,15 +92,14 @@ include("include/config.php");
                                 echo "&nbsp;&nbsp";
                                 echo '<a href="include/delete_kpi_action.php?id=' . $row["kpiID"] . '" onClick="return confirm(\'Delete?\');">Delete</a> </td>';
                                 echo "</td>";
-                                
+                                echo "</tr>";
                             }
                         } else {
                             echo "<tr>";
                             echo "<td>1</td>";
-                            echo "<td colspan='9'>GPA</td>";
+                            echo "<td colspan='9'>CGPA</td>";
                         }
                     }
-                    echo "</tr>";
                     ?>
 
                     <?php
